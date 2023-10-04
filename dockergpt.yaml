@@ -1,0 +1,22 @@
+version: '3'
+services:
+  service1:
+    image: your-service1-image:latest
+    ports:
+      - "8081:8081"
+    depends_on:
+      - service2
+  service2:
+    image: your-service2-image:latest
+    ports:
+      - "8082:8082"
+  service3:
+    image: your-service3-image:latest
+    ports:
+      - "8083:8083"
+    depends_on:
+      - service1
+  service4:
+    image: your-service4-image:latest
+    ports:
+      - "8084:8084"

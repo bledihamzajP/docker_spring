@@ -1,0 +1,63 @@
+nel pom aggiungi dipendenza
+<plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+
+
+andare nella cartella microservizio spring boot
+- mvn clean package
+
+andare nella cartella microservizio spring boot e create dockerfile:
+# Use a base image with Java and a JRE
+FROM openjdk:17-alpine
+# Set the working directory
+LABEL maintainer="javaguides.net"
+# Copy the JAR file into the image
+COPY target/catalog-1.0.jar /app/app.jar
+# Expose the port your Spring Boot application runs on
+WORKDIR /app
+# Define the command to run your application
+CMD ["java", "-jar", "app.jar"]
+
+poi lanciare i comandi 
+docker build -t catalog:latest .
+
+per controllare 
+docker images
+
+per eliminare 
+docker rmi -f (ID)
+
+andare nella cartella con tutti i microservizi (root) docker-compose.yaml:
+
+version: '3'
+services:
+  service1:
+    image: my-service1-image:latest
+    ports:
+      - "8081:8081"
+  service2:
+    image: my-service2-image:latest
+    ports:
+      - "8082:8082"
+  service3:
+    image: my-service3-image:latest
+    ports:
+      - "8083:8083"
+  service4:
+    image: my-service4-image:latest
+    ports:
+      - "8084:8084"
+  service5:
+    image: my-service5-image:latest
+    ports:
+      - "8085:8085"
+
+
+poi lanciare 
+docker-compose up
+
+
